@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIMIVA - Laporan Peminjaman</title>
+    <link rel="stylesheet" href="style_laporan_peminjaman.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo-wrapper">
+                <img src="Logo/SIMIVA.png" alt="SIMIVA Logo" class="sidebar-logo">
+                <h2 class="sidebar-brand">SIMIVA</h2>
+            </div>
+        </div>
+
+        <!-- ===== SIDEBAR USER ===== -->
+        <div class="sidebar-user">
+            <div class="avatar-wrapper">
+                <img src="Logo/SIMIVA.png" alt="Profile" class="avatar" id="profileAvatar">
+                <span class="avatar-status"></span>
+            </div>
+            <h3 class="user-name" id="userName">Admin</h3>
+            <p class="user-role">Administrator</p>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="nav-item">
+                <i class="ri-home-5-line nav-icon"></i>
+                <span class="nav-text">Dashboard</span>
+            </a>
+            <a href="data_barang.html" class="nav-item">
+                <i class="ri-box-3-line nav-icon"></i>
+                <span class="nav-text">Data Barang</span>
+            </a>
+            <a href="data_peminjaman_barang.html" class="nav-item">
+                <i class="ri-inbox-fill nav-icon"></i>
+                <span class="nav-text">Data Peminjaman Barang</span>
+            </a>
+            <a href="laporan_peminjaman.html" class="nav-item active">
+                <i class="ri-file-chart-fill nav-icon"></i>
+                <span class="nav-text">Laporan Peminjaman</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <p class="sidebar-version">v1.0.0</p>
+        </div>
+    </aside>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="main-content">
+        <header class="top-header">
+            <div class="header-left">
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="ri-menu-line"></i>
+                </button>
+                <div class="breadcrumb">
+                    <span class="breadcrumb-item">Laporan Peminjaman</span>
+                </div>
+            </div>
+            <div class="header-right">
+                <button id="themeToggle" class="theme-toggle-btn">
+                    <i class="ri-sun-line light-icon"></i>
+                    <i class="ri-moon-line dark-icon"></i>
+                    <span class="theme-text">Mode Terang</span>
+                </button>
+                <button class="logout-btn" id="logoutBtn">
+                    <i class="ri-logout-box-r-line"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </header>
+
+        <div class="content-body">
+            <div class="page-header">
+                <h2>Laporan Peminjaman</h2>
+                <p>Lihat seluruh riwayat peminjaman barang dari user</p>
+            </div>
+
+            <!-- ===== FILTER TABS ===== -->
+            <div class="filter-tabs">
+                <button class="tab active" data-filter="all">
+                    <i class="ri-apps-2-line"></i>
+                    Semua
+                    <span class="tab-count" id="countAll">0</span>
+                </button>
+                <button class="tab" data-filter="approved">
+                    <i class="ri-checkbox-circle-line"></i>
+                    Disetujui
+                    <span class="tab-count" id="countApproved">0</span>
+                </button>
+                <button class="tab" data-filter="rejected">
+                    <i class="ri-close-circle-line"></i>
+                    Ditolak
+                    <span class="tab-count" id="countRejected">0</span>
+                </button>
+                <button class="tab" data-filter="pending">
+                    <i class="ri-time-line"></i>
+                    Menunggu
+                    <span class="tab-count" id="countPending">0</span>
+                </button>
+            </div>
+
+            <!-- ===== FILTER TANGGAL ===== -->
+            <div class="date-filter-bar">
+                <div class="date-filter-group">
+                    <label for="filterDate">Filter Tanggal</label>
+                    <input type="date" id="filterDate">
+                </div>
+                <button class="btn-clear-filter" id="clearFilter">
+                    <i class="ri-close-line"></i> Hapus Filter
+                </button>
+            </div>
+
+            <!-- ===== ACTION BAR ===== -->
+            <div class="action-bar">
+                <div class="search-wrapper">
+                    <i class="ri-search-line search-icon"></i>
+                    <input type="text" id="searchInput" placeholder="Cari nama peminjam atau barang...">
+                    <i class="ri-close-circle-line clear-search" id="clearSearch"></i>
+                </div>
+                <div class="action-buttons">
+                    <button class="btn-export" id="exportPDF">
+                        <i class="ri-file-pdf-line"></i> PDF
+                    </button>
+                    <button class="btn-export" id="exportExcel">
+                        <i class="ri-file-excel-line"></i> Excel
+                    </button>
+                </div>
+            </div>
+
+            <div style="margin-bottom:16px;padding:12px 14px;border:1px solid var(--border-color);border-radius:10px;background:var(--input-bg);font-size:13px;color:var(--text-color);">
+                <strong>Keterangan Keterlambatan:</strong>
+                <span style="margin-left:6px;">Jika barang dikembalikan melewati batas waktu, status akan menampilkan <b style="color:var(--error-color);">Terlambat Dikembalikan</b> beserta lama keterlambatannya.</span>
+            </div>
+
+            <!-- ===== TABLE ===== -->
+            <div class="table-wrapper">
+                <table class="data-table" id="reportTable">
+                    <thead>
+                        <tr>
+                            <th>Nama Peminjam</th>
+                            <th>Jabatan</th>
+                            <th>Waktu Peminjaman</th>
+                            <th>Barang Yang Dipinjam</th>
+                            <th>Kondisi Pengembalian</th>
+                            <th>Batas Waktu Peminjaman</th>
+                            <th>Keperluan</th>
+                            <th>Jumlah Dipinjam</th>
+                            <th>Hasil Keputusan</th>
+                            <th>Keterangan Admin</th>
+                            <th>Status Peminjaman</th>
+                            <th>Waktu Pengembalian</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dataBody">
+                        <!-- Data akan diisi oleh JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- ===== MODAL PEMERIKSAAN KONDISI PENGEMBALIAN ===== -->
+    <div class="modal-overlay" id="returnInspectionModal">
+        <div class="modal-box" style="max-width: 650px;">
+            <div class="modal-header">
+                <h3>Periksa Kondisi Barang</h3>
+                <button class="modal-close" id="closeReturnInspection">
+                    <i class="ri-close-line"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p style="margin-bottom:16px;color:var(--text-light);">
+                    Periksa kondisi fisik barang yang sudah dikembalikan. Pilihan ini akan dicatat pada laporan peminjaman.
+                </p>
+                <div id="inspectionItemsContainer" style="display:flex;flex-direction:column;gap:12px;"></div>
+                <div style="margin-top:16px;">
+                    <label style="display:block;font-size:13px;font-weight:600;margin-bottom:6px;">
+                        Keterangan kondisi / kerusakan
+                    </label>
+                    <textarea id="returnInspectionNote" rows="4"
+                        placeholder="Contoh: Laptop dikembalikan dengan layar retak dan perlu diperbaiki."
+                        style="width:100%;box-sizing:border-box;padding:10px;border:1px solid var(--border-color);border-radius:8px;background:var(--input-bg);color:var(--text-color);resize:vertical;"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-modal btn-secondary" id="cancelReturnInspection">Batal</button>
+                <button class="btn-modal btn-primary" id="saveReturnInspection">Simpan Pemeriksaan</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== MODAL LOGOUT ===== -->
+    <div class="modal-overlay" id="logoutModal">
+        <div class="modal-box">
+            <div class="modal-icon">
+                <i class="ri-logout-box-r-line"></i>
+            </div>
+            <h2 class="modal-title">Keluar dari akun</h2>
+            <p class="modal-subtitle">Apakah Anda yakin ingin keluar dari SIMIVA?</p>
+            <div class="modal-actions">
+                <button class="btn-modal btn-secondary" id="logoutNo">Tidak</button>
+                <button class="btn-modal btn-primary" id="logoutYes">Ya</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="script_laporan_peminjaman.js"></script>
+</body>
+</html>

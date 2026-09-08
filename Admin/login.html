@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIMIVA - Login</title>
+    <link rel="stylesheet" href="style_login.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="theme-toggle-wrapper">
+            <button id="themeToggle" class="theme-toggle-btn">
+                <i class="ri-sun-line light-icon"></i>
+                <i class="ri-moon-line dark-icon"></i>
+            </button>
+        </div>
+
+        <div class="form-box">
+            <form id="loginForm" action="">
+                <div class="logo-wrapper">
+                    <img src="Logo/SIMIVA.png" alt="SIMIVA Logo" class="logo-image">
+                    <h2 class="brand-title">SIMIVA</h2>
+                    <p class="brand-subtitle">Sistem Manajemen Inventaris</p>
+                </div>
+
+                <div id="signInMessage" class="messageDiv" style="display: none;"></div>
+
+                <div class="field email-field">
+                    <div class="input-group floating-input">
+                        <input type="text" id="iEmail" placeholder=" " required>
+                        <label for="iEmail">Email</label>
+                        <i class="ri-mail-fill input-icon"></i>
+                    </div>
+                    <span class="notif-error">
+                        <i class="ri-error-warning-line"></i>
+                        <p class="error-text">Harap masukkan email anda</p>
+                    </span>
+                </div>
+
+                <div class="field login-password">
+                    <div class="input-group floating-input">
+                        <input type="password" id="iPassword" placeholder=" " required>
+                        <label for="iPassword">Password</label>
+                        <i class="ri-eye-fill toggle-password show-pw"></i>
+                        <i class="ri-eye-off-fill toggle-password hide-pw"></i>
+                    </div>
+                    <span class="notif-error">
+                        <i class="ri-error-warning-line"></i>
+                        <p class="error-text">Harap masukkan password anda</p>
+                    </span>
+                </div>
+
+                <div class="forgot-link">
+                    <a href="password.html">Lupa Password?</a>
+                </div>
+
+                <button type="submit" class="btn-login">Login</button>
+
+                <div class="create-account-link">
+                    <p>Belum memiliki akun? <a href="register.html">Buat Akun</a></p>
+                </div>
+            </form>
+        </div>
+
+        <div class="toggle-box">
+            <div class="toggle-panel">
+                <img src="Logo/SIMIVA.png" alt="SIMIVA Logo" class="welcome-logo">
+                <h1>Selamat Datang</h1>
+                <p>Silakan login untuk mengakses<br>Sistem Manajemen Inventaris</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="status-login-container" id="statusModal">
+        <span id="close-status"><i class="ri-close-large-fill"></i></span>
+        <div class="modal-content">
+            <i class="ri-error-warning-line" style="font-size: 48px; color: #EF4444; margin-bottom: 16px;"></i>
+            <h3>Login Gagal!</h3>
+            <p>Email atau password yang Anda masukkan salah. Silakan cek kembali.</p>
+            <button type="button" class="btn-modal" id="modalOkBtn">OKE</button>
+        </div>
+    </div>
+
+    <script type="module" src="script_index.js"></script>
+</body>
+</html>

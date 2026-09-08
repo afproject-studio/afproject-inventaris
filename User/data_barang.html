@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIMIVA - Data Barang</title>
+    <link rel="stylesheet" href="style_data_barang.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo-wrapper">
+                <img src="Logo/SIMIVA.png" alt="SIMIVA Logo" class="sidebar-logo">
+                <h2 class="sidebar-brand">SIMIVA</h2>
+            </div>
+        </div>
+
+        <!-- ===== SIDEBAR USER ===== -->
+        <div class="sidebar-user">
+            <div class="avatar-wrapper">
+                <img src="Logo/SIMIVA.png" alt="Profile" class="avatar" id="profileAvatar">
+                <span class="avatar-status"></span>
+            </div>
+            <h3 class="user-name" id="userName">User</h3>
+            <p class="user-role" id="userRole">-</p>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="nav-item">
+                <i class="ri-home-5-line nav-icon"></i>
+                <span class="nav-text">Dashboard</span>
+            </a>
+            <a href="data_barang.html" class="nav-item active">
+                <i class="ri-box-3-line nav-icon"></i>
+                <span class="nav-text">Data Barang</span>
+            </a>
+            <a href="peminjaman_barang.html" class="nav-item">
+                <i class="ri-add-circle-line nav-icon"></i>
+                <span class="nav-text">Peminjaman Barang</span>
+            </a>
+            <a href="riwayat_peminjaman.html" class="nav-item">
+                <i class="ri-history-line nav-icon"></i>
+                <span class="nav-text">Riwayat Peminjaman</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <p class="sidebar-version">v1.0.0</p>
+        </div>
+    </aside>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="main-content">
+        <header class="top-header">
+            <div class="header-left">
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="ri-menu-line"></i>
+                </button>
+                <div class="breadcrumb">
+                    <span class="breadcrumb-item">Data Barang</span>
+                </div>
+            </div>
+            <div class="header-right">
+                <button id="themeToggle" class="theme-toggle-btn">
+                    <i class="ri-sun-line light-icon"></i>
+                    <i class="ri-moon-line dark-icon"></i>
+                    <span class="theme-text">Mode Terang</span>
+                </button>
+                <button class="logout-btn" id="logoutBtn">
+                    <i class="ri-logout-box-r-line"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </header>
+
+        <div class="content-body">
+            <div class="page-header">
+                <h2>Data Barang</h2>
+                <p>Lihat daftar barang yang tersedia</p>
+            </div>
+
+            <!-- ===== FILTER TABS ===== -->
+            <div class="filter-tabs">
+                <button class="tab active" data-filter="all">
+                    <i class="ri-apps-2-line"></i>
+                    Semua
+                    <span class="tab-count" id="countAll">0</span>
+                </button>
+                <button class="tab" data-filter="layak">
+                    <i class="ri-checkbox-circle-line"></i>
+                    Layak Digunakan
+                    <span class="tab-count" id="countLayak">0</span>
+                </button>
+                <button class="tab" data-filter="perbaikan">
+                    <i class="ri-tools-line"></i>
+                    Perlu Perbaikan
+                    <span class="tab-count" id="countPerbaikan">0</span>
+                </button>
+                <button class="tab" data-filter="penggantian">
+                    <i class="ri-close-circle-line"></i>
+                    Perlu Penggantian
+                    <span class="tab-count" id="countPenggantian">0</span>
+                </button>
+            </div>
+
+            <!-- ===== SEARCH ===== -->
+            <div class="action-bar">
+                <div class="search-wrapper">
+                    <i class="ri-search-line search-icon"></i>
+                    <input type="text" id="searchInput" placeholder="Cari nama barang...">
+                    <i class="ri-close-circle-line clear-search" id="clearSearch"></i>
+                </div>
+            </div>
+
+            <!-- ===== TABLE ===== -->
+            <div class="table-wrapper" id="tableWrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Foto</th>
+                            <th>Nama Barang</th>
+                            <th>Deskripsi</th>
+                            <th>Kondisi</th>
+                            <th>Stok</th>
+                            <th>Waktu Input</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dataBody">
+                        <!-- Data akan diisi oleh JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- ===== MODAL SLIDESHOW FOTO ===== -->
+    <div class="modal-overlay" id="slideshowModal">
+        <div class="slideshow-container">
+            <button class="slideshow-close" id="slideshowClose">
+                <i class="ri-close-large-line"></i>
+            </button>
+            <button class="slideshow-nav slideshow-prev" id="slideshowPrev">
+                <i class="ri-arrow-left-s-line"></i>
+            </button>
+            <div class="slideshow-content">
+                <img id="slideshowImage" src="" alt="Foto">
+                <div class="slideshow-counter" id="slideshowCounter">1 / 1</div>
+            </div>
+            <button class="slideshow-nav slideshow-next" id="slideshowNext">
+                <i class="ri-arrow-right-s-line"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- ===== MODAL LOGOUT ===== -->
+    <div class="modal-overlay" id="logoutModal">
+        <div class="modal-box">
+            <div class="modal-icon">
+                <i class="ri-logout-box-r-line"></i>
+            </div>
+            <h2 class="modal-title">Keluar dari akun</h2>
+            <p class="modal-subtitle">Apakah Anda yakin ingin keluar dari SIMIVA?</p>
+            <div class="modal-actions">
+                <button class="btn-modal btn-secondary" id="logoutNo">Tidak</button>
+                <button class="btn-modal btn-primary" id="logoutYes">Ya</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="script_data_barang.js"></script>
+</body>
+</html>

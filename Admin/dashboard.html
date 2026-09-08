@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIMIVA - Dashboard</title>
+    <link rel="stylesheet" href="style_dashboard.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo-wrapper">
+                <img src="Logo/SIMIVA.png" alt="SIMIVA Logo" class="sidebar-logo">
+                <h2 class="sidebar-brand">SIMIVA</h2>
+            </div>
+        </div>
+
+        <!-- Logo Besar di Tengah Sidebar -->
+        <div class="sidebar-logo-center">
+            <img src="Logo/SIMIVA.png" alt="SIMIVA Logo" class="sidebar-logo-large">
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="nav-item active">
+                <i class="ri-home-5-line nav-icon"></i>
+                <span class="nav-text">Dashboard</span>
+            </a>
+            <a href="data_barang.html" class="nav-item">
+                <i class="ri-box-3-line nav-icon"></i>
+                <span class="nav-text">Data Barang</span>
+            </a>
+            <a href="data_peminjaman_barang.html" class="nav-item">
+                <i class="ri-inbox-fill nav-icon"></i>
+                <span class="nav-text">Data Peminjaman Barang</span>
+            </a>
+            <a href="laporan_peminjaman.html" class="nav-item">
+                <i class="ri-file-chart-fill nav-icon"></i>
+                <span class="nav-text">Laporan Peminjaman</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <p class="sidebar-version">v1.0.0</p>
+        </div>
+    </aside>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="main-content">
+        <header class="top-header">
+            <div class="header-left">
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="ri-menu-line"></i>
+                </button>
+                <div class="breadcrumb">
+                    <span class="breadcrumb-item">Dashboard</span>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="admin-profile-header">
+                    <img id="headerProfileImage" src="Logo/SIMIVA.png" alt="Profile" class="header-avatar">
+                    <span id="headerAdminName" class="header-admin-name">Admin</span>
+                </div>
+                <button id="themeToggle" class="theme-toggle-btn">
+                    <i class="ri-sun-line light-icon"></i>
+                    <i class="ri-moon-line dark-icon"></i>
+                    <span class="theme-text">Mode Terang</span>
+                </button>
+                <button class="logout-btn-header" id="logoutBtnHeader">
+                    <i class="ri-logout-box-r-line"></i>
+                </button>
+            </div>
+        </header>
+
+        <div class="content-body">
+            <div class="welcome-section">
+                <div class="welcome-text">
+                    <h1>Selamat Datang, <span id="welcomeName">Admin</span> 👋</h1>
+                    <p>Senang melihat Anda kembali. Mari kelola barang dengan lebih baik.</p>
+                </div>
+                <div class="welcome-date">
+                    <i class="ri-calendar-2-line"></i>
+                    <span id="currentDate"></span>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon blue">
+                        <i class="ri-box-3-line"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="totalBarang">0</h3>
+                        <p>Total Barang</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon green">
+                        <i class="ri-add-circle-line"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="pemasukanBulanIni">0</h3>
+                        <p>Pemasukan Bulan Ini</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon purple">
+                        <i class="ri-inbox-fill"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="pengajuanMasuk">0</h3>
+                        <p>Data Peminjaman Barang</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon orange">
+                        <i class="ri-file-chart-line"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="laporanPengajuan">0</h3>
+                        <p>Laporan Peminjaman</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Aktivitas Terbaru</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="activity-list">
+                            <!-- Data akan diisi oleh JavaScript -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Menu Cepat</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="quick-menu-grid">
+                            <a href="data_barang.html" class="quick-menu-item">
+                                <i class="ri-box-3-line"></i>
+                                <span>Data Barang</span>
+                            </a>
+                            <a href="data_peminjaman_barang.html" class="quick-menu-item">
+                                <i class="ri-inbox-fill"></i>
+                                <span>Data Peminjaman</span>
+                            </a>
+                            <a href="laporan_peminjaman.html" class="quick-menu-item">
+                                <i class="ri-file-chart-line"></i>
+                                <span>Laporan Peminjaman</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal Logout -->
+    <div class="modal-overlay" id="logoutModal">
+        <div class="modal-box">
+            <div class="modal-icon">
+                <i class="ri-logout-box-r-line"></i>
+            </div>
+            <h2 class="modal-title">Keluar dari akun</h2>
+            <p class="modal-subtitle">Apakah Anda yakin ingin keluar dari SIMIVA?</p>
+            <div class="modal-actions">
+                <button class="btn-modal btn-secondary" id="logoutNo">Tidak</button>
+                <button class="btn-modal btn-primary" id="logoutYes">Ya</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="script_dashboard.js"></script>
+</body>
+</html>

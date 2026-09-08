@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIMIVA - Register</title>
+    <link rel="stylesheet" href="style_register.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="theme-toggle-wrapper">
+            <button id="themeToggle" class="theme-toggle-btn">
+                <i class="ri-sun-line light-icon"></i>
+                <i class="ri-moon-line dark-icon"></i>
+            </button>
+        </div>
+
+        <div class="form-box">
+            <div class="form-scroll-wrapper">
+                <form id="registerForm" action="" enctype="multipart/form-data">
+                    <div class="logo-wrapper">
+                        <img src="Logo/SIMIVA.png" alt="SIMIVA Logo" class="logo-image">
+                        <h2 class="brand-title">SIMIVA</h2>
+                        <p class="brand-subtitle">Sistem Manajemen Inventaris</p>
+                    </div>
+
+                    <div id="signUpMessage" class="messageDiv" style="display: none;"></div>
+
+                    <div class="field name-field">
+                        <div class="input-group floating-input">
+                            <input type="text" id="iNama" placeholder=" " required>
+                            <label for="iNama">Nama Lengkap</label>
+                            <i class="ri-user-fill input-icon"></i>
+                        </div>
+                        <span class="notif-error">
+                            <i class="ri-error-warning-line"></i>
+                            <p class="error-text">Harap masukkan nama lengkap anda</p>
+                        </span>
+                    </div>
+
+                    <div class="field jabatan-field">
+                        <div class="input-group floating-input">
+                            <input type="text" id="iJabatan" placeholder=" " required>
+                            <label for="iJabatan">Jabatan</label>
+                            <i class="ri-briefcase-fill input-icon"></i>
+                        </div>
+                        <span class="notif-error">
+                            <i class="ri-error-warning-line"></i>
+                            <p class="error-text">Harap masukkan jabatan anda</p>
+                        </span>
+                    </div>
+
+                    <div class="field username-field">
+                        <div class="input-group floating-input">
+                            <input type="text" id="iUsername" placeholder=" " required>
+                            <label for="iUsername">Username</label>
+                            <i class="ri-user-3-fill input-icon"></i>
+                        </div>
+                        <span class="notif-error">
+                            <i class="ri-error-warning-line"></i>
+                            <p class="error-text">Harap masukkan username anda</p>
+                        </span>
+                    </div>
+
+                    <div class="field email-field">
+                        <div class="input-group floating-input">
+                            <input type="email" id="iEmail" placeholder=" " required>
+                            <label for="iEmail">Email</label>
+                            <i class="ri-mail-fill input-icon"></i>
+                        </div>
+                        <span class="notif-error">
+                            <i class="ri-error-warning-line"></i>
+                            <p class="error-text">Harap masukkan email yang valid</p>
+                        </span>
+                    </div>
+
+                    <div class="field password-field">
+                        <div class="input-group floating-input">
+                            <input type="password" id="iPassword" placeholder=" " required>
+                            <label for="iPassword">Password</label>
+                            <i class="ri-eye-fill toggle-password show-pw"></i>
+                            <i class="ri-eye-off-fill toggle-password hide-pw"></i>
+                        </div>
+                        <span class="notif-error">
+                            <i class="ri-error-warning-line"></i>
+                            <p class="error-text">Minimal 8 karakter dengan angka, simbol, huruf kecil dan kapital</p>
+                        </span>
+                    </div>
+
+                    <div class="field photo-field">
+                        <div class="input-group floating-input file-input">
+                            <input type="file" id="iFoto" accept="image/*" required>
+                            <div class="file-input-overlay">
+                                <span class="file-label-text">Foto Profil</span>
+                                <span class="file-name" id="fileName"></span>
+                            </div>
+                            <i class="ri-camera-fill input-icon"></i>
+                        </div>
+                        <span class="notif-error">
+                            <i class="ri-error-warning-line"></i>
+                            <p class="error-text">Harap upload foto profil (max 1Mb)</p>
+                        </span>
+                        <div class="file-info" id="fileInfo"></div>
+                    </div>
+
+                    <div class="field telepon-field">
+                        <div class="input-group floating-input">
+                            <input type="text" id="iNoTelp" placeholder=" ">
+                            <label for="iNoTelp">Nomor Telepon</label>
+                            <i class="ri-phone-fill input-icon"></i>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-register" id="btnDaftar">Daftar</button>
+
+                    <div class="login-link">
+                        <p>Sudah memiliki akun? <a href="login.html">Login</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="toggle-box">
+            <div class="toggle-panel">
+                <img src="Logo/SIMIVA.png" alt="SIMIVA Logo" class="welcome-logo">
+                <h1>Daftar Akun</h1>
+                <p>Buat akun baru untuk<br>mengakses SIMIVA</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Status Modal - Username Already Exists -->
+    <div class="status-modal-container" id="usernameModal">
+        <span class="close-status" id="closeUsername"><i class="ri-close-large-fill"></i></span>
+        <div class="modal-content">
+            <i class="ri-error-warning-line modal-icon error-icon"></i>
+            <h3>Mohon maaf, Username sudah terdaftar!</h3>
+            <p>Silahkan gunakan username yang lain 😉</p>
+            <button type="button" class="btn-modal" id="usernameModalOk">OKE</button>
+        </div>
+    </div>
+
+    <!-- Status Modal - Email Already Exists -->
+    <div class="status-modal-container" id="emailModal">
+        <span class="close-status" id="closeEmail"><i class="ri-close-large-fill"></i></span>
+        <div class="modal-content">
+            <i class="ri-error-warning-line modal-icon error-icon"></i>
+            <h3>Mohon maaf, Email sudah terdaftar!</h3>
+            <p>Silahkan gunakan email lain 😉</p>
+            <button type="button" class="btn-modal" id="emailModalOk">OKE</button>
+        </div>
+    </div>
+
+    <!-- Status Modal - Success -->
+    <div class="status-modal-container" id="successModal">
+        <span class="close-status" id="closeSuccess"><i class="ri-close-large-fill"></i></span>
+        <div class="modal-content">
+            <i class="ri-checkbox-circle-line modal-icon success-icon"></i>
+            <h3>Selamat, akun anda berhasil dibuat! 😁</h3>
+            <p>Silahkan klik tombol dibawah ini untuk lanjut</p>
+            <button type="button" class="btn-modal btn-success-modal" id="successModalLogin">Login</button>
+        </div>
+    </div>
+
+    <script type="module" src="script_index.js"></script>
+</body>
+</html>
